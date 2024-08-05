@@ -36,6 +36,6 @@ jobs:
         run: |
           scp -v -r -o StrictHostKeyChecking=no ./* ${{ secrets.USER }}@${{ secrets.DROPLET_IP }}:/var/www/html/wp-content/themes/block-test
 
-      - name: Set permissions
-        run: |
-          ssh -o StrictHostKeyChecking=no ${{ secrets.USER }}@{{ secrets.DROPLET_IP }} "sudo chown -R www-data:www-data /var/www/html/wp-content/themes/block-test/"
+#      - name: Set permissions
+ #       run: |
+  #        ssh -o StrictHostKeyChecking=no ${{ secrets.USER }}@{{ secrets.DROPLET_IP }} "sudo chown -R www-data:www-data /var/www/html/wp-content/themes/block-test/"
