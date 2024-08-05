@@ -34,8 +34,8 @@ jobs:
       # Sync files to droplet
       - name: Sync files
         run: |
-          scp -r -o StrictHostKeyChecking=no ./* matt@157.230.14.100:/var/www/html/wp-content/themes/block-test
+          scp -r -o StrictHostKeyChecking=no ./* ${{ secrets.USER }}@157.230.14.100:/var/www/html/wp-content/themes/block-test
 
       - name: Set permissions
         run: |
-          ssh -o StrictHostKeyChecking=no matt@157.230.14.100 "sudo chown -R www-data:www-data /var/www/html/wp-content/themes/block-test/"
+          ssh -o StrictHostKeyChecking=no ${{ secrets.USER }}@157.230.14.100 "sudo chown -R www-data:www-data /var/www/html/wp-content/themes/block-test/"
