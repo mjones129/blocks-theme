@@ -34,10 +34,8 @@ jobs:
       # Sync files to droplet
       - name: Sync files
         run: |
-          rsync -avz -e ./ matt@157.230.14.100:/var/www/html/wp-content/themes/block-test/
-        env:
-          RSYNC_RSH: 'ssh -o StrictHostKeyChecking=no'
+          scp -r -o StrictHostKeyChecking=no ./blocks-theme/* matt@157.230.14.100:/var/www/html/wp-content/themes/block-test/
 
       - name: Set permissions
         run: |
-          ssh matt@157.230.14.100 "sudo chown -R www-data:www-data /var/www/html/wp-content/themes/block-test/"
+          ssh -o StrictHostKeyChecking=no matt@157.230.14.100 "sudo chown -R www-data:www-data /var/www/html/wp-content/themes/block-test/"
