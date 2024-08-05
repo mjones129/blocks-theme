@@ -1,0 +1,43 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the "master" branch
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v4
+
+      # SSH key
+      - name: Set up SSH
+        uses: webfactory/ssh-agent@v0.7.0
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      # Sync files to droplet
+      - name: Sync files
+        run: |
+          rsync -avz --delete ./block-theme matt@157.230.14.100:/var/www/html/wp-content/themes/block-test/
+        env:
+          RSYNC_RSH: 'ssh -o StrictHostKeyChecking=no'
+
+      - name: Set permissions
+        run: |
+          ssh matt@157.230.14.100 "sudo chown -R www-data:www-data /var/www/html/wp-content/themes/block-test/"
