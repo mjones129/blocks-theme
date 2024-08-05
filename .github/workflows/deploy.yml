@@ -34,7 +34,7 @@ jobs:
       # Sync files to droplet
       - name: Sync files
         run: |
-          scp -r -o StrictHostKeyChecking=no ./blocks-theme/* matt@157.230.14.100:/var/www/html/wp-content/themes/block-test/
+          scp -r -o StrictHostKeyChecking=no ./ matt@157.230.14.100:/var/www/html/wp-content/themes/block-test/
 
       - name: Set permissions
         run: |
