@@ -1,0 +1,11 @@
+@media screen and (max-width: 782px) {
+  .wp-block-group.is-style-desktop-only {
+    display: none !important;
+  }
+}
+
+@media screen and (min-width: 783px) {
+  .wp-block-group.is-style-phone-only {
+    display: none !important;
+  }
+}
