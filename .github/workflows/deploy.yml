@@ -34,7 +34,7 @@ jobs:
       # Sync files to droplet
       - name: Sync files
         run: |
-          rsync -avz -e ./block-theme matt@157.230.14.100:/var/www/html/wp-content/themes/block-test/
+          rsync -avz -e ./blocks-theme matt@157.230.14.100:/var/www/html/wp-content/themes/block-test/
         env:
           RSYNC_RSH: 'ssh -o StrictHostKeyChecking=no'
 
